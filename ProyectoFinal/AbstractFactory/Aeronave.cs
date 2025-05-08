@@ -7,9 +7,9 @@ using System.Threading.Tasks;
 
 namespace ProyectoFinal.AbstractFactory
 {
-	public interface Aeronave
+	public abstract class Aeronave
 	{
-		void Accept(IVisitor visitor);
+		public abstract void Accept(IVisitor visitor);
 
 	}
 
@@ -17,7 +17,7 @@ namespace ProyectoFinal.AbstractFactory
 	{
 		public Avion() { }
 
-		public void Accept(IVisitor visitor)
+		public override void Accept(IVisitor visitor)
 		{
 			visitor.VisitAvion(this);
 		}
@@ -27,7 +27,7 @@ namespace ProyectoFinal.AbstractFactory
 	{
 		public Avioneta() { }
 
-		public void Accept(IVisitor visitor)
+		public override void Accept(IVisitor visitor)
 		{
 			visitor.VisitAvioneta(this);
 		}
@@ -37,7 +37,7 @@ namespace ProyectoFinal.AbstractFactory
 	{
 		public Helicoptero() { }
 
-		public void Accept(IVisitor visitor)
+		public override void Accept(IVisitor visitor)
 		{
 			visitor.VisitHelicoptero(this);
 		}
@@ -47,7 +47,7 @@ namespace ProyectoFinal.AbstractFactory
 	{
 		public Dron() { }
 
-		public void Accept(IVisitor visitor)
+		public override void Accept(IVisitor visitor)
 		{
 			visitor.VisitDron(this);
 		}

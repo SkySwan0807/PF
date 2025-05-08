@@ -18,22 +18,29 @@ namespace ProyectoFinal.AbstractFactory
 	{
 		public Avion crearAvion()
 		{
-			
+			return new AvionCivil();
 		}
 
 		public Avioneta crearAvioneta()
 		{
-			
+			return new AvionetaCivil();
 		}
 
 		public List<Dron> crearDrons()
 		{
-			
+			List<Dron> drons = new List<Dron>()
+			{
+				new DronCivil(),
+				new DronCivil(),
+				new DronCivil()
+			};
+
+			return drons;
 		}
 
 		public Helicoptero crearHelicoptero()
 		{
-			
+			return new HelicopteroCivil();
 		}
 	}
 
@@ -41,22 +48,29 @@ namespace ProyectoFinal.AbstractFactory
 	{
 		public Avion crearAvion()
 		{
-
+			return new AvionMilitar();
 		}
 
 		public Avioneta crearAvioneta()
 		{
-
+			return new AvionetaMilitar();
 		}
 
 		public List<Dron> crearDrons()
 		{
+			List<Dron> drons = new List<Dron>()
+			{
+				new DronMilitar(),
+				new DronMilitar(),
+				new DronMilitar()
+			};
 
+			return drons;
 		}
 
 		public Helicoptero crearHelicoptero()
 		{
-
+			return new HelicopteroMilitar();
 		}
 	}
 }
