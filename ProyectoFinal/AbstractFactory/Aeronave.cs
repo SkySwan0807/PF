@@ -9,7 +9,13 @@ namespace ProyectoFinal.AbstractFactory
 {
 	public abstract class Aeronave
 	{
+		public string placa {  get; set; }
+		public string modelo { get; set; }
+		public string fabricante { get; set; }
+		public double costoVuelo { get; set; }
+
 		public abstract void Accept(IVisitor visitor);
+		public abstract void Volar();
 
 	}
 
