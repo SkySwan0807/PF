@@ -8,17 +8,30 @@ namespace ProyectoFinal.AbstractFactory
 {
 	public class AvionCivil : Avion
 	{
+		public AvionCivil(string placa, string modelo, string fabricante, double costoVuelo)
+		: base(placa, modelo, fabricante, costoVuelo) { }
+
 	}
 
 	public class AvionetaCivil : Avioneta
 	{
+		public AvionetaCivil(string placa, string modelo, string fabricante, double costoVuelo)
+		: base(placa, modelo, fabricante, costoVuelo) { }
+
 	}
  
 	public class HelicopteroCivil : Helicoptero
 	{
+		public HelicopteroCivil(string placa, string modelo, string fabricante, double costoVuelo)
+		: base(placa, modelo, fabricante, costoVuelo) { }
+
 	}
 
 	public class DronCivil : Dron
 	{
+		public DronCivil(string placa, string modelo, string fabricante, double costoVuelo)
+		: base(placa, modelo, fabricante, costoVuelo) { }
+
+
 	}
 }

@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -9,19 +10,33 @@ namespace ProyectoFinal.AbstractFactory
 {
 	public abstract class Aeronave
 	{
-		public string placa {  get; set; }
-		public string modelo { get; set; }
-		public string fabricante { get; set; }
-		public double costoVuelo { get; set; }
+		public string Placa {  get; set; }
+		public string Modelo { get; set; }
+		public string Fabricante { get; set; }
+		public double CostoVuelo { get; set; }
+		public int Vuelos { get; set; }
+
+		protected Aeronave(string placa, string modelo, string fabricante, double costoVuelo)
+		{
+			Placa = placa;
+			Modelo = modelo;
+			Fabricante = fabricante;
+			CostoVuelo = costoVuelo;
+			Vuelos = 0;
+		}
 
 		public abstract void Accept(IVisitor visitor);
-		public abstract void Volar();
+		public void Volar()
+		{
+			Vuelos++;
+		}
 
 	}
 
 	public abstract class Avion : Aeronave
 	{
-		public Avion() { }
+		protected Avion(string placa, string modelo, string fabricante, double costoVuelo)
+		: base(placa, modelo, fabricante, costoVuelo) { }
 
 		public override void Accept(IVisitor visitor)
 		{
@@ -31,7 +46,8 @@ namespace ProyectoFinal.AbstractFactory
 
 	public abstract class Avioneta : Aeronave
 	{
-		public Avioneta() { }
+		protected Avioneta(string placa, string modelo, string fabricante, double costoVuelo)
+		: base(placa, modelo, fabricante, costoVuelo) { }
 
 		public override void Accept(IVisitor visitor)
 		{
@@ -41,7 +57,8 @@ namespace ProyectoFinal.AbstractFactory
 
 	public abstract class Helicoptero : Aeronave
 	{
-		public Helicoptero() { }
+		protected Helicoptero(string placa, string modelo, string fabricante, double costoVuelo)
+		: base(placa, modelo, fabricante, costoVuelo) { }
 
 		public override void Accept(IVisitor visitor)
 		{
@@ -51,7 +68,8 @@ namespace ProyectoFinal.AbstractFactory
 
 	public abstract class Dron : Aeronave
 	{
-		public Dron() { }
+		protected Dron(string placa, string modelo, string fabricante, double costoVuelo)
+		: base(placa, modelo, fabricante, costoVuelo) { }
 
 		public override void Accept(IVisitor visitor)
 		{
