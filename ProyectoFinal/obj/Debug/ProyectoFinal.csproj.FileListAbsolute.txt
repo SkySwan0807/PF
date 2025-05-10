@@ -1,7 +1,0 @@
-C:\Users\HP VICTUS\Downloads\PF-main\PF-main\ProyectoFinal\obj\Debug\ProyectoFinal.csproj.AssemblyReference.cache
-C:\Users\HP VICTUS\Downloads\PF-main\PF-main\ProyectoFinal\obj\Debug\ProyectoFinal.csproj.CoreCompileInputs.cache
-C:\Users\HP VICTUS\Downloads\PF-main\PF-main\ProyectoFinal\bin\Debug\ProyectoFinal.exe.config
-C:\Users\HP VICTUS\Downloads\PF-main\PF-main\ProyectoFinal\bin\Debug\ProyectoFinal.exe
-C:\Users\HP VICTUS\Downloads\PF-main\PF-main\ProyectoFinal\bin\Debug\ProyectoFinal.pdb
-C:\Users\HP VICTUS\Downloads\PF-main\PF-main\ProyectoFinal\obj\Debug\ProyectoFinal.exe
-C:\Users\HP VICTUS\Downloads\PF-main\PF-main\ProyectoFinal\obj\Debug\ProyectoFinal.pdb
