@@ -17,6 +17,8 @@ namespace ProyectoFinal.Mediator
 	{
 		private List<Dron> drones = new List<Dron>();
 
+
+
 		public void RegistrarDron(Dron dron)
 		{
 			if (!drones.Contains(dron))

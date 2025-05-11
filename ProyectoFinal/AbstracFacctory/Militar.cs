@@ -1,4 +1,5 @@
-﻿using System;
+﻿using ProyectoFinal.Mediator;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -29,8 +30,8 @@ namespace ProyectoFinal.AbstractFactory
 
 	public class DronMilitar : Dron
 	{
-		public DronMilitar(string placa, string modelo, string fabricante, double costoVuelo)
-		: base(placa, modelo, fabricante, costoVuelo) { }
+		public DronMilitar(string placa, string modelo, string fabricante, double costoVuelo, ICentralMando centralMando)
+		: base(placa, modelo, fabricante, costoVuelo, centralMando) { }
 
 	}
 }

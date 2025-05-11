@@ -1,4 +1,5 @@
-﻿using System;
+﻿using ProyectoFinal.Mediator;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -29,11 +30,12 @@ namespace ProyectoFinal.AbstractFactory
 
 		public List<Dron> crearDrones()
 		{
+			CentralMando central = new CentralMando();
 			List<Dron> drons = new List<Dron>()
 			{
-				new DronCivil("DEF1515", "DJI Mavic 3", "DJI", 50),
-				new DronCivil("DEF1616", "DJI Mavic 3", "DJI", 50),
-				new DronCivil("DEF1717", "DJI Mavic 3", "DJI", 50)
+				new DronCivil("DEF1515", "DJI Mavic 3", "DJI", 50, central),
+				new DronCivil("DEF1616", "DJI Mavic 3", "DJI", 50, central),
+				new DronCivil("DEF1717", "DJI Mavic 3", "DJI", 50, central)
 			};
 
 			return drons;
@@ -74,11 +76,12 @@ namespace ProyectoFinal.AbstractFactory
 
 		public List<Dron> crearDrones()
 		{
+			CentralMando central = new CentralMando();
 			List<Dron> drons = new List<Dron>()
 			{
-				new DronMilitar("DFE1515", "MQ-9 Reaper", "General Atomics", 5000),
-				new DronMilitar("DFE1616", "MQ-9 Reaper", "General Atomics", 5000),
-				new DronMilitar("DFE1717", "MQ-9 Reaper", "General Atomics", 5000)
+				new DronMilitar("DFE1515", "MQ-9 Reaper", "General Atomics", 5000, central),
+				new DronMilitar("DFE1616", "MQ-9 Reaper", "General Atomics", 5000, central),
+				new DronMilitar("DFE1717", "MQ-9 Reaper", "General Atomics", 5000, central)
 			};
 
 			return drons;
