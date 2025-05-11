@@ -68,8 +68,31 @@ namespace ProyectoFinal.AbstractFactory
 
 	public abstract class Dron : Aeronave
 	{
-		protected Dron(string placa, string modelo, string fabricante, double costoVuelo)
-		: base(placa, modelo, fabricante, costoVuelo) { }
+		private ICentralMando central;
+
+		protected Dron(string placa, string modelo, string fabricante, double costoVuelo, ICentralMando centralMando)
+			: base(placa, modelo, fabricante, costoVuelo)
+		{
+			central = centralMando;
+			central.RegistrarDron(this);
+		}
+
+		public void EnviarMensaje(string mensaje)
+		{
+			Console.WriteLine($"{Modelo} ({Placa}) enviando mensaje: {mensaje}");
+			central.EnviarMensaje(this, mensaje);
+		}
+
+		public void RecibirMensaje(string mensaje)
+		{
+			Console.WriteLine($"{Modelo} ({Placa}) recibió mensaje: {mensaje}");
+		}
+
+		public new void Volar()
+		{
+			Vuelos++;
+			Console.WriteLine($"{Modelo} ({Placa}) está volando. Total vuelos: {Vuelos}");
+		}
 
 		public override void Accept(IVisitor visitor)
 		{
