@@ -1,4 +1,6 @@
-﻿using ProyectoFinal.Mediator;
+﻿using ProyectoFinal.Composite;
+using ProyectoFinal.Mediator;
+using ProyectoFinal.Observer;
 using ProyectoFinal.Visitor;
 using System;
 using System.Collections.Generic;
@@ -9,13 +11,14 @@ using System.Threading.Tasks;
 
 namespace ProyectoFinal.AbstractFactory
 {
-	public abstract class Aeronave
+	public abstract class Aeronave : ISuscriptorTorre
 	{
 		public string Placa {  get; set; }
 		public string Modelo { get; set; }
 		public string Fabricante { get; set; }
 		public double CostoVuelo { get; set; }
 		public int Vuelos { get; set; }
+		public Itramo Ruta { get; set; }
 
 		protected Aeronave(string placa, string modelo, string fabricante, double costoVuelo)
 		{
@@ -27,11 +30,31 @@ namespace ProyectoFinal.AbstractFactory
 		}
 
 		public abstract void Accept(IVisitor visitor);
+
+		public void AsignarRuta(Itramo ruta)
+		{
+			Ruta = ruta;
+		}
+
 		public void Volar()
 		{
 			Vuelos++;
 		}
 
+		public string GetIdentificadorAeronave()
+		{
+			return Placa; // Usamos la placa como identificador único
+		}
+
+		public virtual void RecibirNotificacionAlerta(string codigoAlerta, string detallesAlerta)
+		{
+			// Implementación base: Simplemente registra la recepción de la alerta.
+			Console.WriteLine($"--- ALERTA RECIBIDA por {Modelo} ({Placa}) ---");
+			Console.WriteLine($"Código: {codigoAlerta}");
+			Console.WriteLine($"Detalles: {detallesAlerta}");
+			Console.WriteLine($"Acción por defecto: Registrar y continuar operación normal.");
+			Console.WriteLine($"---------------------------------------------");
+		}
 	}
 
 	public abstract class Avion : Aeronave
