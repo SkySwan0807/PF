@@ -1,4 +1,5 @@
 ﻿using ProyectoFinal.AbstractFactory;
+using ProyectoFinal.Composite;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -11,13 +12,12 @@ namespace ProyectoFinal.Mediator
 	{
     	void RegistrarDron(Dron dron);
    		void EnviarMensaje(Dron origen, string mensaje);
+		void AsignarRuta(Itramo ruta);
 	}
 
 	public class CentralMando : ICentralMando
 	{
 		private List<Dron> drones = new List<Dron>();
-
-
 
 		public void RegistrarDron(Dron dron)
 		{
@@ -35,6 +35,14 @@ namespace ProyectoFinal.Mediator
 				{
 					dron.RecibirMensaje(mensaje);
 				}
+			}
+		}
+
+		public void AsignarRuta(Itramo ruta)
+		{
+			foreach (var dron in drones)
+			{
+				dron.AsignarRuta(ruta);
 			}
 		}
 	}

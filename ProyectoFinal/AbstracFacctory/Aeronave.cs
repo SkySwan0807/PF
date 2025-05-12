@@ -110,13 +110,18 @@ namespace ProyectoFinal.AbstractFactory
 
 	public abstract class Dron : Aeronave
 	{
-		private ICentralMando central;
+		protected ICentralMando central { get; set; }
 
 		protected Dron(string placa, string modelo, string fabricante, double costoVuelo, ICentralMando centralMando)
 			: base(placa, modelo, fabricante, costoVuelo)
 		{
 			central = centralMando;
 			central.RegistrarDron(this);
+		}
+
+		public void AsignarRutaDesdeCentral(Itramo ruta)
+		{
+			central.AsignarRuta(ruta);  // Central handles the assignment
 		}
 
 		public void EnviarMensaje(string mensaje)

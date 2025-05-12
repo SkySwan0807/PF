@@ -325,7 +325,10 @@ namespace ProyectoFinal.PatProxy
 					}
 					else
 					{
-						_aeronavesDelSistema[opcionAeronave - 1].AsignarRuta(_rutasGuardadas[opcionRuta - 1]);
+						if(_aeronavesDelSistema[opcionAeronave - 1] is Dron dron)
+							dron.AsignarRutaDesdeCentral(_rutasGuardadas[opcionRuta - 1]);
+						else
+							_aeronavesDelSistema[opcionAeronave - 1].AsignarRuta(_rutasGuardadas[opcionRuta - 1]);
 						break;
 					}
 
