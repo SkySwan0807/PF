@@ -33,7 +33,7 @@ namespace ProyectoFinal.PatProxy
 			Console.WriteLine($"Total aeronaves creadas: {_aeronavesDelSistema.Count}");
 			foreach (var aeronave in _aeronavesDelSistema)
 			{
-				Console.WriteLine($"- {aeronave.Modelo} ({aeronave.Placa}), Tipo: {aeronave.GetType().BaseType.Name}");
+				Console.WriteLine($"- {aeronave.Modelo} ({aeronave.GetPlaca()}), Tipo: {aeronave.GetType().BaseType.Name}");
 			}
 
 
@@ -74,7 +74,7 @@ namespace ProyectoFinal.PatProxy
 			{
 				Console.WriteLine("Bienvenido al Sistema de Aeronaves");
 				Console.WriteLine("Seleccione una opción:");
-				Console.WriteLine("1. Crear Rutas");
+				Console.WriteLine("1. Manejo de Rutas");
 				Console.WriteLine("2. Operaciones de Aeronaves");
 				Console.WriteLine("3. Emitir Alerta desde Torre de Control");
 				Console.WriteLine("4. Mostrar Estadísticas de Vuelo (Visitor)");
@@ -114,22 +114,12 @@ namespace ProyectoFinal.PatProxy
 		}
 		private void MenuOperacionesAeronaves()
 		{
-			if (!_aeronavesDelSistema.Any())
-			{
-				Console.WriteLine("No hay aeronaves en el sistema para operar.");
-				return;
-			}
-
 			int opcionAeronave;
 			do
 			{
 				Console.WriteLine("\n--- Operaciones de Aeronaves ---");
 				Console.WriteLine("Aeronaves disponibles:");
-				for (int i = 0; i < _aeronavesDelSistema.Count; i++)
-				{
-					var a = _aeronavesDelSistema[i];
-					Console.WriteLine($"{i + 1}. {a.Modelo} ({a.Placa}) - Vuelos: {a.Vuelos}");
-				}
+				MostrarAeronavesGuaradas();
 				Console.WriteLine("0. Volver al menú principal");
 				Console.Write("Seleccione una aeronave para operar (número) o 0 para volver: ");
 
@@ -174,8 +164,7 @@ namespace ProyectoFinal.PatProxy
 			switch (opcion)
 			{
 				case 1:
-					aeronave.Volar(); // Llama al método Volar
-					Console.WriteLine($"{aeronave.Modelo} ({aeronave.Placa}) ha completado un vuelo. Vuelos totales: {aeronave.Vuelos}");
+					aeronave.Volar();
 					break;
 				case 2:
 					if (aeronave is Dron dronSeleccionado)
@@ -248,7 +237,8 @@ namespace ProyectoFinal.PatProxy
 				Console.WriteLine("1. Crear tramo simple");
 				Console.WriteLine("2. Crear ruta compuesta");
 				Console.WriteLine("3. Mostrar rutas creadas");
-				Console.WriteLine("4. Salir ");
+				Console.WriteLine("4. Asignar rutas");
+				Console.WriteLine("0. Salir ");
 
 				opcion = Convert.ToInt32(Console.ReadLine());
 				switch (opcion)
@@ -264,8 +254,10 @@ namespace ProyectoFinal.PatProxy
 					case 3:
 						MostrarRutasGuardadas();
 						break;
-
 					case 4:
+						AsignarRuta();
+						break;
+					case 0:
 						Console.WriteLine("Saliendo del sistema...");
 						break;
 
@@ -276,6 +268,70 @@ namespace ProyectoFinal.PatProxy
 
 
 			} while (opcion != 4);
+		}
+
+		private void AsignarRuta()
+		{
+			int opcionAeronave;
+			int opcionRuta = 0;
+
+			do
+			{
+				do
+				{
+					Console.WriteLine("\n--- Asignacion de Ruta a Aeronaves ---");
+					Console.WriteLine("Aeronaves disponibles:");
+					MostrarAeronavesGuaradas();
+					Console.WriteLine("0. Volver al menú principal");
+					Console.Write("Seleccione una aeronave para asignar (número) o 0 para volver: ");
+
+					if (!int.TryParse(Console.ReadLine(), out opcionAeronave))
+					{
+						Console.WriteLine("Entrada inválida.");
+						continue;
+					}
+
+					if (opcionAeronave == 0)
+					{
+						break;
+					}
+					else if (opcionAeronave > _aeronavesDelSistema.Count())
+					{
+						Console.WriteLine("Selección de aeronave no válida.");
+						continue;
+					}
+					break;
+
+				} while (true);
+
+				while (opcionAeronave != 0)
+				{
+					MostrarRutasGuardadas();
+					Console.WriteLine("0. Volver al menú principal");
+					Console.Write("Seleccione una ruta para asignar (número) o 0 para volver: ");
+
+					if (!int.TryParse(Console.ReadLine(), out opcionRuta))
+					{
+						Console.WriteLine("Entrada inválida.");
+						continue;
+					}
+
+					if (opcionRuta == 0)
+						break;
+					else if(opcionRuta > _rutasGuardadas.Count())
+					{
+						Console.WriteLine("Selección de ruta no válida.");
+						continue;
+					}
+					else
+					{
+						_aeronavesDelSistema[opcionAeronave - 1].AsignarRuta(_rutasGuardadas[opcionRuta - 1]);
+						break;
+					}
+
+				}
+
+			} while ((opcionRuta != 0) && opcionAeronave != 0);
 		}
 		private void CrearRutaSimple()
 		{
@@ -348,7 +404,22 @@ namespace ProyectoFinal.PatProxy
 
 			for (int i = 0; i < _rutasGuardadas.Count; i++)
 			{
-				Console.WriteLine($"[{i}] {_rutasGuardadas[i].ObtenerDescripcion()}");
+				Console.WriteLine($"{i + 1}. {_rutasGuardadas[i].ObtenerDescripcion()}");
+			}
+		}
+
+		private	void MostrarAeronavesGuaradas()
+		{
+			if (!_aeronavesDelSistema.Any())
+			{
+				Console.WriteLine("No hay aeronaves en el sistema para operar.");
+				return;
+			}
+
+			for (int i = 0; i < _aeronavesDelSistema.Count; i++)
+			{
+				var a = _aeronavesDelSistema[i];
+				Console.WriteLine($"{i + 1}. {a.Modelo} ({a.Placa}) - Vuelos: {a.Vuelos}");
 			}
 		}
 

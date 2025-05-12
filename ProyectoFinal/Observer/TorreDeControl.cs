@@ -21,7 +21,7 @@ namespace ProyectoFinal.Observer
             if (!_suscriptores.Contains(suscriptor))
             {
                 _suscriptores.Add(suscriptor);
-                Console.WriteLine($"Torre de Control: Aeronave '{suscriptor.GetIdentificadorAeronave()}' se ha suscrito a las alertas.");
+                Console.WriteLine($"Torre de Control: Aeronave '{suscriptor.GetPlaca()}' se ha suscrito a las alertas.");
             }
         }
 
@@ -29,7 +29,7 @@ namespace ProyectoFinal.Observer
         {
             if (_suscriptores.Remove(suscriptor))
             {
-                Console.WriteLine($"Torre de Control: Aeronave '{suscriptor.GetIdentificadorAeronave()}' se ha desuscrito de las alertas.");
+                Console.WriteLine($"Torre de Control: Aeronave '{suscriptor.GetPlaca()}' se ha desuscrito de las alertas.");
             }
         }
 

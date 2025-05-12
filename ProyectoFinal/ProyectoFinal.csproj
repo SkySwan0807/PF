@@ -50,6 +50,8 @@
     <Compile Include="Composite\RutaCompuesta.cs" />
     <Compile Include="Composite\TramoSimple.cs" />
     <Compile Include="AbstracFacctory\Militar.cs" />
+    <Compile Include="Observer\ISuscriptorTorre.cs" />
+    <Compile Include="Observer\TorreDeControl.cs" />
     <Compile Include="PatProxy\ISubject.cs" />
     <Compile Include="PatProxy\Proxy.cs" />
     <Compile Include="PatProxy\Sistema.cs" />

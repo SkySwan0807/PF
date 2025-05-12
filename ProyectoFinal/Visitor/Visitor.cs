@@ -15,7 +15,7 @@ namespace ProyectoFinal.Visitor
 		void VisitDron(Dron dron);
 	}
 
-	public class DataVisitor : IVisitor
+	public class EstadisticasVueloVisitor : IVisitor
 	{
 		public void VisitAvion(Avion avion)
 		{
@@ -35,6 +35,11 @@ namespace ProyectoFinal.Visitor
 		public void VisitHelicoptero(Helicoptero helicoptero)
 		{
 			
+		}
+
+		public void MostrarReporteEstadisticas()
+		{
+
 		}
 	}
 

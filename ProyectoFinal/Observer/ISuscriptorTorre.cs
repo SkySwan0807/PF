@@ -6,7 +6,7 @@ namespace ProyectoFinal.Observer
     public interface ISuscriptorTorre
     {
         /// Identificador único de la aeronave para logs y referencias.
-        string GetIdentificadorAeronave();
+        string GetPlaca();
 
         /// Método llamado por la Torre de Control cuando se emite una alerta.
         /// "codigoAlerta">El código breve de la alerta.

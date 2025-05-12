@@ -13,7 +13,7 @@ namespace ProyectoFinal.AbstractFactory
 {
 	public abstract class Aeronave : ISuscriptorTorre
 	{
-		public string Placa {  get; set; }
+		public string Placa;
 		public string Modelo { get; set; }
 		public string Fabricante { get; set; }
 		public double CostoVuelo { get; set; }
@@ -34,16 +34,34 @@ namespace ProyectoFinal.AbstractFactory
 		public void AsignarRuta(Itramo ruta)
 		{
 			Ruta = ruta;
+			Console.WriteLine("Asignacion de ruta Completada");
 		}
 
 		public void Volar()
 		{
-			Vuelos++;
+			if(Ruta == null)
+			{
+				Console.WriteLine("Este Vehiculo Aereo no tiene una ruta asignada");
+
+			}
+			else
+			{
+				Vuelos++;
+				Console.WriteLine($"El Vehiculo Aereo con placa {Placa} recorre la siguiente ruta:");
+				Console.WriteLine(Ruta.ObtenerDescripcion());
+				Console.WriteLine($"{Modelo} ({Placa}) ha completado un vuelo. Vuelos totales: {Vuelos}");
+			}
+			
 		}
 
-		public string GetIdentificadorAeronave()
+		public string GetPlaca()
 		{
-			return Placa; // Usamos la placa como identificador único
+			return Placa;
+		}
+
+		public void SetPlaca(string placa)
+		{
+			Placa = placa;
 		}
 
 		public virtual void RecibirNotificacionAlerta(string codigoAlerta, string detallesAlerta)
